@@ -20,6 +20,9 @@ describe('file', function() {
         files.forEach(function(file) {
           var expect = fs.readFileSync(path.join(base, dir, file));
           var actual= fs.readFileSync(path.join(expected, dir, file.replace(/\.expect$/, '')));
+          if (expect.toString() !== actual.toString()) {
+            console.log(expect.toString(), actual.toString());
+          }
           expect.should.eql(actual);
         });
       });
